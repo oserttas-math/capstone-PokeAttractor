@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% block head %}
+
+{% endblock %}
+
+
+<div class="container">
+  <div class="col-md-12">
+    <hr class="section-heading-spacer">
+      <div class="clearfix"></div>
+  <h2 class="section-heading" align="center">Predict the appearence of Pokémon</h2>
+
+      <p class="lead"> Click the marker and check the result. The map below shows the 5 most possible Pokémons and the corresponding probablities predicted from a k-Nearest Neighbors model. </p>
+      <iframe id = "myframe" style="border: 1px solid #ccc" width="80%" height="400" src="../static/map_result.html" id="myframe"></iframe>
+      <script>
+        var _theframe = document.getElementById("myframe");
+        _theframe.src = _theframe.src + '?rand=' + Math.round(Math.random() * 10000000);
+      </script>
+  </div>
+</div>
+
+
+<h2 class="section-heading" align="center">Prediction result</h2>
+
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 20px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: cornflowerblue;
+}
+
+.bar:hover {
+  fill: orange ;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  font: 14px sans-serif;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.4);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+<script>
+
+var margin = {top: 40, right: 20, bottom: 80, left: 80},
+    width = 700 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom
+    padding = 100;
+
+var formatPercent = d3.format(".00");
+
+var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .tickFormat(formatPercent);
+
+
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return "<strong>Probablity:</strong> <span style='color:yellow'>" + d.prob.toFixed(3) + "</span><br><strong>Pokémon:</strong> <span style='color:yellow'>" + d.poke + "</span>";
+  })
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.call(tip);
+
+d3.tsv("../static/result.tsv?nocache=" + (new Date()).getTime(), type, function(error, data) {
+  x.domain(data.map(function(d) { return d.poke; }));
+  y.domain([0, d3.max(data, function(d) { return d.prob; })]);
+
+  svg.append("g")
+      .attr("class", "xaxis axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.selectAll(".xaxis text")
+      .attr("transform", function(d) {
+             return "translate(" + this.getBBox().height*-2 + "," + this.getBBox().height + ")rotate(-45)";
+         });
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x", 0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Probablity");
+
+  svg.selectAll(".bar")
+      .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.poke); })
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.prob); })
+      .attr("height", function(d) { return height - y(d.prob); })
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
+
+});
+
+function type(d) {
+  d.prob = +d.prob;
+  return d;
+}
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('../static/img/Pokemon-Go-City.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="intro-message">
+                        <h1>Attract Fans</h1>
+                        <hr class="intro-divider">
+                        <h3>Social media analysis of over 275,000 tweets</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <body>
+<div class="container">
+    <div class="col-md-12">
+        <hr class="section-headingspacer" align="center">
+        <div class="clearfix"></div>
+        <h2 class="section-heading" align="left">When do most people play Pokémon GO?</h2>
+        <p class="lead">Timeseries Analysis of the hourly tweets count shows people are more likely to tweet about Pokémon GO during 5-9 PM, which suggests that most people are likely to play during their evening commute.</p>
+        <p><iframe style="border: 1px solid #ccc" width="100%" height="600" src="{{url_for('static', filename='timeseries.html')}}"></iframe></p>
+        <p class="lead">Here, you are looking at the autocorrelation of hourly tweets count data. The autocorrelation plot clearly shows the daily seasonal effects in the tweets data. The correlation is near 1 for short lags, which means using the last few hour's values in a model is likely to be useful.  </p>
+        <div class="col-md-12">
+            <img class="img-responsive" width="100%" src="../static/timeseries_ACF.png" alt="">
+        </div>
+    </div>
+</div>  
+
+<div class="container">
+    <div class="col-md-12">
+        <hr class="section-headingspacer" align="center">
+        <div class="clearfix"></div>
+        <h2 class="section-heading" align="left">Where are the fans coming from?</h2>
+        <p class="lead">The twitter user locations were geocoded by Google APIs and displayed on the map. These data not only shows how pokemongo craze took over the entire world, but also the geographic variation in response to the game. Basically, the number of tweets from each state is linearly correlated with the state population. After normalizing the number of tweets by the state population, I found the game is mostly popular in NY, TX and the west coast of US.</p>
+        <p><iframe style="border: 1px solid #ccc" width="100%" height="400" src="{{url_for('static', filename='tweetmap_states.html')}}"></iframe></p>
+    </div>
+    <div class="col-md-12">
+        <hr class="section-headingspacer" align="center">
+        <div class="clearfix"></div>
+        <p class="lead">More interestingly is the normalized number of tweets has a negative correlation with the state obesity rate (shown in the map below), which suggests that while Pokémon Go ask people to get moving more in order to catch’em all, but in reality, this strategy may only work for people who are already fit rather than fat.</p>
+        <p><iframe style="border: 1px solid #ccc" width="100%" height="400" src="{{url_for('static', filename='obesity_states.html')}}"></iframe></p>
+    </div>
+</div>
+<div class="container">
+    <div class="col-md-12">
+        <hr class="section-headingspacer" align="center">
+        <div class="clearfix"></div>
+        <br>
+        <br>
+        <meta charset="utf-8">
+        <style>
+        form {
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          position: absolute;
+          left: 10px;
+          top: 10px;
+        }
+        label {
+          display: block;
+        }
+        </style>
+        <form>
+          <label><input type="radio" name="mode" value="grouped"> Grouped</label>
+          <label><input type="radio" name="mode" value="stacked" checked> Stacked</label>
+        </form>
+        <svg width="960" height="500"></svg>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script>
+        var n = 2, // The number of series.
+            m = 50; // The number of values per series.
+        // The xz array has m elements, representing the x-values shared by all series.
+        // The yz array has n elements, representing the y-values of each of the n series.
+        // Each yz[i] is an array of m non-negative numbers representing a y-value for xz[i].
+        // The y01z array has the same structure as yz, but with stacked [y₀, y₁] instead of y.
+        var xz = d3.range(m)
+            yz = [[0.0,0.00729927007299,0.014598540146,0.021897810219,0.029197080292,0.0510948905109,0.0729927007299,0.0802919708029,0.160583941606,0.175182481752,0.189781021898,0.189781021898,0.189781021898,0.204379562044,0.211678832117,0.211678832117,0.21897810219,0.240875912409,0.277372262774,0.284671532847,0.299270072993,0.313868613139,0.328467153285,0.328467153285,0.335766423358,0.350364963504,0.36496350365,0.372262773723,0.379562043796,0.379562043796,0.394160583942,0.408759124088,0.423357664234,0.452554744526,0.467153284672,0.474452554745,0.481751824818,0.489051094891,0.496350364964,0.496350364964,0.510948905109,0.540145985401,0.540145985401,0.56204379562,0.605839416058,0.620437956204,0.642335766423,0.686131386861,0.722627737226,1.0],[0.0,0.382430049097,0.658333124368,0.412493334974,0.325164763761,0.676393565282,0.0747354497354,0.462193703328,0.421612260361,0.722381170118,0.732291538493,0.596634102381,0.227320326279,0.8682848541,0.781847781848,0.0583301071106,0.267346324257,0.0,1.0,0.111145027812,0.306517322112,0.772070157897,0.401803493201,0.431549314883,0.401105410365,0.217108569064,0.414693673953,0.168293160886,0.190990593768,0.411875367431,0.243582206545,0.215731195113,0.368188204346,0.509616660034,0.410013592604,0.749319698662,0.0,0.222492838013,0.431642792618,0.387968353486,0.322636425785,0.0985757903321,0.492471613684,0.416045520668,0.328932723755,0.311883002359,0.134695615155,0.278484413142,0.248244066958,0.107147598187]]
+            xzlabel = ['HI','CT','MA','CO','VT','RI','MT','UT','NJ','CA','AZ','FL','NM','NY','NV','NH','ME','WY','WA','ID','MN','OR','MD','VA','IL','WI','PA','KS','ND','DE','SD','IA','NE','OH','NC','TX','AK','MO','IN','GA','MI','AR','OK','KY','TN','SC','LA','AL','WV','MS']
+
+            y01z = d3.stack().keys(d3.range(n))(d3.transpose(yz)),
+            yMax = d3.max(yz, function(y) { return d3.max(y); }),
+            y1Max = d3.max(y01z, function(y) { return d3.max(y, function(d) { return d[1]; }); });
+        var svg = d3.select("svg"),
+            margin = {top: 40, right: 10, bottom: 20, left: 10},
+            width = +svg.attr("width") - margin.left - margin.right,
+            height = +svg.attr("height") - margin.top - margin.bottom,
+            g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        var x = d3.scaleBand()
+            .domain(xz)
+            .rangeRound([0, width])
+            .padding(0.08);
+        var y = d3.scaleLinear()
+            .domain([0, y1Max])
+            .range([height, 0]);
+        var color = d3.scaleOrdinal()
+            .domain(d3.range(n))
+            .range(d3.schemeCategory10);
+        var series = g.selectAll(".series")
+          .data(y01z)
+          .enter().append("g")
+            .attr("fill", function(d, i) { return color(i); });
+        var rect = series.selectAll("rect")
+          .data(function(d) { return d; })
+          .enter().append("rect")
+            .attr("x", function(d, i) { return x(i); })
+            .attr("y", height)
+            .attr("width", x.bandwidth())
+            .attr("height", 0);
+        rect.transition()
+            .delay(function(d, i) { return i * 10; })
+            .attr("y", function(d) { return y(d[1]); })
+            .attr("height", function(d) { return y(d[0]) - y(d[1]); });
+        g.append("g")
+            .attr("class", "axis axis--x")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x)
+                .tickFormat(function(d,i){ return xzlabel[i] })
+                .tickSize(0)
+                .tickPadding(6));
+        d3.selectAll("input")
+            .on("change", changed);
+        var timeout = d3.timeout(function() {
+          d3.select("input[value=\"grouped\"]")
+              .property("checked", true)
+              .dispatch("change");
+        }, 2000);
+        function changed() {
+          timeout.stop();
+          if (this.value === "grouped") transitionGrouped();
+          else transitionStacked();
+        }
+        function transitionGrouped() {
+          y.domain([0, yMax]);
+          rect.transition()
+              .duration(500)
+              .delay(function(d, i) { return i * 10; })
+              .attr("x", function(d, i) { return x(i) + x.bandwidth() / n * this.parentNode.__data__.key; })
+              .attr("width", x.bandwidth() / n)
+            .transition()
+              .attr("y", function(d) { return y(d[1] - d[0]); })
+              .attr("height", function(d) { return y(0) - y(d[1] - d[0]); });
+        }
+        function transitionStacked() {
+          y.domain([0, y1Max]);
+          rect.transition()
+              .duration(500)
+              .delay(function(d, i) { return i * 10; })
+              .attr("y", function(d) { return y(d[1]); })
+              .attr("height", function(d) { return y(d[0]) - y(d[1]); })
+            .transition()
+              .attr("x", function(d, i) { return x(i); })
+              .attr("width", x.bandwidth());
+        }
+
+
+        //d3.csv("data_obese_pokecount.csv", type, function(error, data) {
+          //x.domain(data.map(function(d) { return d.state; }));
+          //y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+        </script>
+    </div>
+</div>
+
+
+<div class="content-section-a">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-sm-6">
+                <hr class="section-heading-spacer">
+                <div class="clearfix"></div>
+                <h2 class="section-heading" align="left">What other topics do fans care about?</h2>
+                <p class="lead">I explored the messy tweets using Natural Language Processing techniques, and created the wordclouds of the most frequent words and hashtags from Pokémon tweets.</p>
+            </div>
+            <div class="ccol-lg-5 col-lg-offset-2 col-sm-6">
+                <img class="img-responsive" src="../static/wcld_pokemon-2017.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-section-b">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <p class="lead">Wordclouds of the most frequent hashtags co-exist with #PokémonGo</p>
+                </div>
+                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    <img class="img-responsive" src="../static/wcld_pokemon2-2017.png" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+</div>
+
+<div class="container">
+    <div class="col-md-12">
+        <hr class="section-headingspacer" align="center">
+        <div class="clearfix"></div>
+        <h2 class="section-heading" align="left">Topic modeling</h2>
+                <p class="lead">Using a k-means clustering algorithm, I was able to cluster tweets into three topic: which are mainly about entertainment, education, security and politics. </p>
+            </div>
+            <div class="ccol-lg-5 col-lg-offset-1 col-sm-push-6">
+                <img class="img-responsive" src="../static/wcld_topics-2017.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
+{% endblock %}
