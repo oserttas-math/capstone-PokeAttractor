@@ -12,8 +12,8 @@
       <div class="clearfix"></div>
   <h2 class="section-heading" align="center">Predict the appearence of Pokémon</h2>
 
-      <p class="lead"> Click the marker and check the result. The map below shows the 5 most possible Pokémons and the corresponding probablities predicted from a k-Nearest Neighbors model. </p>
-      <iframe id = "myframe" style="border: 1px solid #ccc" width="80%" height="400" src="../static/map_result.html" id="myframe"></iframe>
+      <p class="lead"> Click the marker and check the result. The map below shows the 10 most possible Pokémons and the corresponding probablities predicted from a k-Nearest Neighbors model. </p>
+      <iframe id = "myframe" style="border: 1px solid #ccc" width="700" height="400" align="center" src="../static/map_result.html"></iframe>
       <script>
         var _theframe = document.getElementById("myframe");
         _theframe.src = _theframe.src + '?rand=' + Math.round(Math.random() * 10000000);
@@ -81,6 +81,7 @@ body {
 }
 </style>
 <body>
+<div id="chart" align="center"></div>
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="https://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 <script>
@@ -115,7 +116,8 @@ var tip = d3.tip()
     return "<strong>Probablity:</strong> <span style='color:yellow'>" + d.prob.toFixed(3) + "</span><br><strong>Pokémon:</strong> <span style='color:yellow'>" + d.poke + "</span>";
   })
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#chart").append("svg")
+    .attr("align", "center")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")

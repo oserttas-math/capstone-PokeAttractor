@@ -29,9 +29,9 @@
         <hr class="section-headingspacer" align="center">
         <div class="clearfix"></div>
         <h2 class="section-heading" align="left">When do most people play Pokémon GO?</h2>
-        <p class="lead">Timeseries Analysis of the hourly tweets count shows people are more likely to tweet about Pokémon GO during 5-9 PM, which suggests that most people are likely to play during their evening commute.</p>
+        <p class="lead" align="left">Timeseries Analysis of the hourly tweets count shows people are more likely to tweet about Pokémon GO during 5-9 PM, which suggests that most people are likely to play during their evening commute.</p>
         <p><iframe style="border: 1px solid #ccc" width="100%" height="600" src="{{url_for('static', filename='timeseries.html')}}"></iframe></p>
-        <p class="lead">Here, you are looking at the autocorrelation of hourly tweets count data. The autocorrelation plot clearly shows the daily seasonal effects in the tweets data. The correlation is near 1 for short lags, which means using the last few hour's values in a model is likely to be useful.  </p>
+        <p class="lead" align="left">Here, you are looking at the autocorrelation of hourly tweets count data. The autocorrelation plot clearly shows the daily seasonal effects in the tweets data. The correlation is near 1 for short lags, which means using the last few hour's values in a model is likely to be useful.  </p>
         <div class="col-md-12">
             <img class="img-responsive" width="100%" src="../static/timeseries_ACF.png" alt="">
         </div>
@@ -43,13 +43,13 @@
         <hr class="section-headingspacer" align="center">
         <div class="clearfix"></div>
         <h2 class="section-heading" align="left">Where are the fans coming from?</h2>
-        <p class="lead">The twitter user locations were geocoded by Google APIs and displayed on the map. These data not only shows how pokemongo craze took over the entire world, but also the geographic variation in response to the game. Basically, the number of tweets from each state is linearly correlated with the state population. After normalizing the number of tweets by the state population, I found the game is mostly popular in NY, TX and the west coast of US.</p>
+        <p class="lead" align="left">The twitter user locations were geocoded by Google APIs and displayed on the map. These data not only shows how pokemongo craze took over the entire world, but also the geographic variation in response to the game. Basically, the number of tweets from each state is linearly correlated with the state population. After normalizing the number of tweets by the state population, I found the game is mostly popular in NY, TX and the west coast of US.</p>
         <p><iframe style="border: 1px solid #ccc" width="100%" height="400" src="{{url_for('static', filename='tweetmap_states.html')}}"></iframe></p>
     </div>
     <div class="col-md-12">
         <hr class="section-headingspacer" align="center">
         <div class="clearfix"></div>
-        <p class="lead">More interestingly is the normalized number of tweets has a negative correlation with the state obesity rate (shown in the map below), which suggests that while Pokémon Go ask people to get moving more in order to catch’em all, but in reality, this strategy may only work for people who are already fit rather than fat.</p>
+        <p class="lead" align="left">More interestingly is the normalized number of tweets has a negative correlation with the state obesity rate (shown in the map below), which suggests that while Pokémon Go ask people to get moving more in order to catch’em all, but in reality, this strategy may only work for people who are already fit rather than fat.</p>
         <p><iframe style="border: 1px solid #ccc" width="100%" height="400" src="{{url_for('static', filename='obesity_states.html')}}"></iframe></p>
     </div>
 </div>
@@ -57,6 +57,7 @@
     <div class="col-md-12">
         <hr class="section-headingspacer" align="center">
         <div class="clearfix"></div>
+        <h2 class="section-heading" align="center"><span style="color:#FF7700">Popularity</span> vs. <span style="color:#177CDA">Obesity</span></h2>
         <br>
         <br>
         <meta charset="utf-8">
@@ -70,12 +71,13 @@
         label {
           display: block;
         }
+
         </style>
         <form>
           <label><input type="radio" name="mode" value="grouped"> Grouped</label>
           <label><input type="radio" name="mode" value="stacked" checked> Stacked</label>
         </form>
-        <svg width="960" height="500"></svg>
+        <svg width="900" height="400"></svg>
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script>
         var n = 2, // The number of series.
@@ -91,11 +93,15 @@
             y01z = d3.stack().keys(d3.range(n))(d3.transpose(yz)),
             yMax = d3.max(yz, function(y) { return d3.max(y); }),
             y1Max = d3.max(y01z, function(y) { return d3.max(y, function(d) { return d[1]; }); });
+
+
         var svg = d3.select("svg"),
             margin = {top: 40, right: 10, bottom: 20, left: 10},
             width = +svg.attr("width") - margin.left - margin.right,
             height = +svg.attr("height") - margin.top - margin.bottom,
             g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        
         var x = d3.scaleBand()
             .domain(xz)
             .rangeRound([0, width])
@@ -117,6 +123,7 @@
             .attr("y", height)
             .attr("width", x.bandwidth())
             .attr("height", 0);
+
         rect.transition()
             .delay(function(d, i) { return i * 10; })
             .attr("y", function(d) { return y(d[1]); })
@@ -179,7 +186,7 @@
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
                 <h2 class="section-heading" align="left">What other topics do fans care about?</h2>
-                <p class="lead">I explored the messy tweets using Natural Language Processing techniques, and created the wordclouds of the most frequent words and hashtags from Pokémon tweets.</p>
+                <p class="lead" align="left">I explored the messy tweets using Natural Language Processing techniques, and created the wordclouds of the most frequent words and hashtags from Pokémon tweets.</p>
             </div>
             <div class="ccol-lg-5 col-lg-offset-2 col-sm-6">
                 <img class="img-responsive" src="../static/wcld_pokemon-2017.png" alt="">
@@ -194,7 +201,8 @@
                 <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <p class="lead">Wordclouds of the most frequent hashtags co-exist with #PokémonGo</p>
+                    <h2 class="section-heading" align="left">What are the related hashtags?</h2>
+                    <p class="lead" align="left">Wordclouds of the most frequent hashtags co-exist with #PokémonGo</p>
                 </div>
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
                     <img class="img-responsive" src="../static/wcld_pokemon2-2017.png" alt="">
@@ -210,7 +218,7 @@
         <hr class="section-headingspacer" align="center">
         <div class="clearfix"></div>
         <h2 class="section-heading" align="left">Topic modeling</h2>
-                <p class="lead">Using a k-means clustering algorithm, I was able to cluster tweets into three topic: which are mainly about entertainment, education, security and politics. </p>
+                <p class="lead" align="left">Using a k-means clustering algorithm, I'm able to cluster tweets into different topics, which are mainly about entertainment, education, security and politics. </p>
             </div>
             <div class="ccol-lg-5 col-lg-offset-1 col-sm-push-6">
                 <img class="img-responsive" src="../static/wcld_topics-2017.png" alt="">

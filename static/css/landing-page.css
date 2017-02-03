@@ -39,14 +39,6 @@ h6 {
     background-size: cover;
 }
 
-.intro-header2 {
-    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
-    padding-bottom: 50px;
-    text-align: center;
-    color: #f8f8f8;
-    background: url(../img/Pokemon-Go-City.jpg) no-repeat center center;
-    background-size: cover;
-}
 
 .intro-message {
     position: relative;
@@ -125,6 +117,7 @@ h6 {
 .banner {
     padding: 100px 0;
     color: #f8f8f8;
+    height: 250px;
     background: url(../img/banner-bg.jpg) no-repeat center center;
     background-size: cover;
 }
@@ -178,6 +171,3 @@ p.copyright {
     margin: 15px 0 0;
 }
 
-ul li{
- font-size:18px;
-}

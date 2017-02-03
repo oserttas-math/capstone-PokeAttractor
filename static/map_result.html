@@ -25,7 +25,7 @@
         
             
         
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.min.js"></script>
+            <script src="https://rawgithub.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.js"></script>
         
         
         
@@ -67,7 +67,7 @@
         
             
         
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css" />
+            <link rel="stylesheet" href="https://rawgit.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.css" />
         
         
         
@@ -110,7 +110,7 @@
             
         
             
-            <style> #map_56977f0e85d54b4fb79b95cc7b1b7ccc {
+            <style> #map_6ed35970fb09442ab2a849bf99a459b1 {
                 position : relative;
                 width : 100.0%;
                 height: 100.0%;
@@ -126,7 +126,7 @@
             
         
             
-            <div class="folium-map" id="map_56977f0e85d54b4fb79b95cc7b1b7ccc" ></div>
+            <div class="folium-map" id="map_6ed35970fb09442ab2a849bf99a459b1" ></div>
         
         
         
@@ -140,8 +140,8 @@
             var northEast = L.latLng(90, 180);
             var bounds = L.latLngBounds(southWest, northEast);
 
-            var map_56977f0e85d54b4fb79b95cc7b1b7ccc = L.map('map_56977f0e85d54b4fb79b95cc7b1b7ccc', {
-                                           center:[40.7484405,-73.9856644],
+            var map_6ed35970fb09442ab2a849bf99a459b1 = L.map('map_6ed35970fb09442ab2a849bf99a459b1', {
+                                           center:[40.7230999,-73.9765173],
                                            zoom: 11,
                                            maxBounds: bounds,
                                            layers: [],
@@ -151,7 +151,7 @@
         
         
             
-            var tile_layer_3cce7155dc074da9ada1b4118550a566 = L.tileLayer(
+            var tile_layer_9c8f790815b84d5da7a3305032677edf = L.tileLayer(
                 'https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg',
                 {
                     maxZoom: 18,
@@ -159,42 +159,42 @@
                     attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.',
                     detectRetina: false
                     }
-                ).addTo(map_56977f0e85d54b4fb79b95cc7b1b7ccc);
+                ).addTo(map_6ed35970fb09442ab2a849bf99a459b1);
 
         
         
             
 
-            var marker_500028ff9f094d5ab4675c8a817bee8a = L.marker(
-                [40.7484405,-73.9856644],
+            var marker_e92d1cfb250141f39c361610ac87c92d = L.marker(
+                [40.7230999,-73.9765173],
                 {
                     icon: new L.Icon.Default()
                     }
                 )
-                .addTo(map_56977f0e85d54b4fb79b95cc7b1b7ccc);
+                .addTo(map_6ed35970fb09442ab2a849bf99a459b1);
             
         
             
 
-                var icon_a79049b5f2f94393ad5c92d540cd5b3e = L.AwesomeMarkers.icon({
+                var icon_44856323fbf0471f8966bbeb8deb67b9 = L.AwesomeMarkers.icon({
                     icon: 'cloud',
                     iconColor: 'white',
                     markerColor: 'red',
                     prefix: 'glyphicon',
                     extraClasses: 'fa-rotate-0'
                     });
-                marker_500028ff9f094d5ab4675c8a817bee8a.setIcon(icon_a79049b5f2f94393ad5c92d540cd5b3e);
+                marker_e92d1cfb250141f39c361610ac87c92d.setIcon(icon_44856323fbf0471f8966bbeb8deb67b9);
             
         
             
-            var popup_bc74809c88394561ba79690ab5f62e46 = L.popup({maxWidth: '300'});
+            var popup_55a25fc8744e4461a9a5c87781b95ab6 = L.popup({maxWidth: '300'});
 
             
-                var html_2f71b72463dc4a6a92497caac05329d0 = $('         <div id="html_2f71b72463dc4a6a92497caac05329d0"                 style="width: 100.0%; height: 100.0%;">                 Address: 350 5th Ave, New York, NY 10118 Latitude: 40.748441 Longitude: -73.985664 </div>                 ')[0];
-                popup_bc74809c88394561ba79690ab5f62e46.setContent(html_2f71b72463dc4a6a92497caac05329d0);
+                var html_f1e873af160b4fb9a15c5342abeef2ca = $('         <div id="html_f1e873af160b4fb9a15c5342abeef2ca"                 style="width: 100.0%; height: 100.0%;">                 Address: 500 7th st, NYC Latitude: 40.723100 Longitude: -73.976517 </div>                 ')[0];
+                popup_55a25fc8744e4461a9a5c87781b95ab6.setContent(html_f1e873af160b4fb9a15c5342abeef2ca);
             
 
-            marker_500028ff9f094d5ab4675c8a817bee8a.bindPopup(popup_bc74809c88394561ba79690ab5f62e46);
+            marker_e92d1cfb250141f39c361610ac87c92d.bindPopup(popup_55a25fc8744e4461a9a5c87781b95ab6);
 
             
         
