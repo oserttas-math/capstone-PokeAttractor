@@ -110,7 +110,7 @@
             
         
             
-            <style> #map_fc2476187ff749c8a480f4bcac831dfb {
+            <style> #map_8e48c8495129452d8d1575fe4b54f800 {
                 position : relative;
                 width : 100.0%;
                 height: 100.0%;
@@ -126,7 +126,7 @@
             
         
             
-            <div class="folium-map" id="map_fc2476187ff749c8a480f4bcac831dfb" ></div>
+            <div class="folium-map" id="map_8e48c8495129452d8d1575fe4b54f800" ></div>
         
         
         
@@ -140,8 +140,8 @@
             var northEast = L.latLng(90, 180);
             var bounds = L.latLngBounds(southWest, northEast);
 
-            var map_fc2476187ff749c8a480f4bcac831dfb = L.map('map_fc2476187ff749c8a480f4bcac831dfb', {
-                                           center:[40.7060006,-74.008801],
+            var map_8e48c8495129452d8d1575fe4b54f800 = L.map('map_8e48c8495129452d8d1575fe4b54f800', {
+                                           center:[40.7484405,-73.9856644],
                                            zoom: 11,
                                            maxBounds: bounds,
                                            layers: [],
@@ -151,7 +151,7 @@
         
         
             
-            var tile_layer_2f46e5d7ae7e4c85b33cd28cf6bb8c01 = L.tileLayer(
+            var tile_layer_1232d3aed1a24d1ba53677f71e9de5ce = L.tileLayer(
                 'https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg',
                 {
                     maxZoom: 18,
@@ -159,42 +159,42 @@
                     attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.',
                     detectRetina: false
                     }
-                ).addTo(map_fc2476187ff749c8a480f4bcac831dfb);
+                ).addTo(map_8e48c8495129452d8d1575fe4b54f800);
 
         
         
             
 
-            var marker_388b05b136464e859503aa69d02d8188 = L.marker(
-                [40.7060006,-74.008801],
+            var marker_4ad229160f8a4e1187e13b3947832234 = L.marker(
+                [40.7484405,-73.9856644],
                 {
                     icon: new L.Icon.Default()
                     }
                 )
-                .addTo(map_fc2476187ff749c8a480f4bcac831dfb);
+                .addTo(map_8e48c8495129452d8d1575fe4b54f800);
             
         
             
 
-                var icon_c5d987b7776746b285ad879a04c661bf = L.AwesomeMarkers.icon({
+                var icon_5d22d34617d540c8b9a47069105c5162 = L.AwesomeMarkers.icon({
                     icon: 'cloud',
                     iconColor: 'white',
                     markerColor: 'red',
                     prefix: 'glyphicon',
                     extraClasses: 'fa-rotate-0'
                     });
-                marker_388b05b136464e859503aa69d02d8188.setIcon(icon_c5d987b7776746b285ad879a04c661bf);
+                marker_4ad229160f8a4e1187e13b3947832234.setIcon(icon_5d22d34617d540c8b9a47069105c5162);
             
         
             
-            var popup_ef9580be7afc4959b7f9709092123855 = L.popup({maxWidth: '300'});
+            var popup_dcd5af9c10cc46158b0c6f18bda9781a = L.popup({maxWidth: '300'});
 
             
-                var html_5149821d590642af93703fdfed2f1415 = $('         <div id="html_5149821d590642af93703fdfed2f1415"                 style="width: 100.0%; height: 100.0%;">                 Address: wallstreet, NYC Latitude: 40.706001 Longitude: -74.008801 </div>                 ')[0];
-                popup_ef9580be7afc4959b7f9709092123855.setContent(html_5149821d590642af93703fdfed2f1415);
+                var html_11393bc7f08645ac9af23c19a4c7fe0f = $('         <div id="html_11393bc7f08645ac9af23c19a4c7fe0f"                 style="width: 100.0%; height: 100.0%;">                 Address: 350 5th Ave, New York, NY 10118 Latitude: 40.748441 Longitude: -73.985664 </div>                 ')[0];
+                popup_dcd5af9c10cc46158b0c6f18bda9781a.setContent(html_11393bc7f08645ac9af23c19a4c7fe0f);
             
 
-            marker_388b05b136464e859503aa69d02d8188.bindPopup(popup_ef9580be7afc4959b7f9709092123855);
+            marker_4ad229160f8a4e1187e13b3947832234.bindPopup(popup_dcd5af9c10cc46158b0c6f18bda9781a);
 
             
         
