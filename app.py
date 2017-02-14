@@ -51,9 +51,9 @@ def show_result():
         pokeId = np.load('models/pokeId.npy')
 
         # Load model
-        knn = joblib.load('models/model_kNN.pkl')
+        knn = joblib.load('models/model2_kNN.pkl')
         # Predict
-        prob = knn.predict_proba([app.vars['lat'], app.vars['lon']])
+        prob = knn.predict_proba([app.vars['lat'], app.vars['lon'], app.vars['time']])
         sort_indices = np.argsort(prob, axis=1)[:,::-1][:,:10]
         app.vars['prob'] = prob[:,sort_indices[0]]
         app.vars['poke'] = [dict_ID[idx] for idx in pokeId[sort_indices[0]]]
@@ -79,7 +79,7 @@ def show_result():
             f.write("%s\t%f\n" %(app.vars['poke'][i], app.vars['prob'][0][i]))
         f.close()
         # Show result webpage
-        return render_template('result.html')
+        return render_template('result.html', loc=app.vars['address'], time=app.vars['time'])
 
 
 @app.route('/tweet')

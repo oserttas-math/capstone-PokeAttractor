@@ -30,8 +30,8 @@
         <div class="clearfix"></div>
         <h2 class="section-heading" align="left">When do most people play Pokémon GO?</h2>
         <p class="lead" align="left">Timeseries Analysis of the hourly tweets count shows the daily seasonal effects in the tweets data. The data shows people are more likely to tweet about Pokémon GO during 5-9 PM, suggesting most people are likely to play during their evening commute. The average hourly tweet number can be simply modeled by a trigonometric function with a period of 24h.</p>
-        <!--p><iframe style="border: 1px solid #ccc" width="100%" height="600" src="{{url_for('static', filename='timeseries_model.html')}}"></iframe></p-->
-        <img class="img-responsive" src="../static/timeseries_model.png" alt="">
+        <p><iframe style="border: 1px solid #ccc" width="100%" height="600" src="{{url_for('static', filename='timeseries_model.html')}}"></iframe></p>
+        <!--img class="img-responsive" src="../static/timeseries_model.png" alt=""-->
 
     </div>
 </div>  
@@ -42,13 +42,13 @@
         <div class="clearfix"></div>
         <h2 class="section-heading" align="left">Where are the fans coming from?</h2>
         <p class="lead" align="left">The twitter user locations were geocoded by Google APIs and displayed on the map. These data not only shows how pokemongo craze took over the entire world, but also the geographic variation in response to the game. Basically, the number of tweets from each state is linearly correlated with the state population. After normalizing the number of tweets by the state population, I found the game is mostly popular in NY, TX and the west coast of US.</p>
-        <p><iframe style="border: 1px solid #ccc" width="100%" height="400" src="{{url_for('static', filename='tweetmap_states.html')}}"></iframe></p>
+        <p><iframe style="border: 1px solid #ccc" width="100%" height="600" src="{{url_for('static', filename='plotly_tweet_states.html')}}"></iframe></p>
     </div>
     <div class="col-md-12">
         <hr class="section-headingspacer" align="center">
         <div class="clearfix"></div>
         <p class="lead" align="left">More interestingly is the normalized number of tweets has a negative correlation with the state obesity rate (shown in the map below), which suggests that while Pokémon Go ask people to get moving more in order to catch’em all, but in reality, this strategy may only work for people who are already fit rather than fat.</p>
-        <p><iframe style="border: 1px solid #ccc" width="100%" height="400" src="{{url_for('static', filename='obesity_states.html')}}"></iframe></p>
+        <p><iframe style="border: 1px solid #ccc" width="100%" height="600" src="{{url_for('static', filename='plotly_obesity_states.html')}}"></iframe></p>
     </div>
 </div>
 <div class="container">
@@ -253,7 +253,7 @@
 
         </div>
         <div class="ccol-lg-5 col-lg-offset-2 col-sm-6">
-            <h3><span style="color:#EEB01F; font-style:italic;">Fedora</span></h3>
+            <h3>Entertainment: <span style="color:#EEB01F; font-style:italic;">Fedora</span></h3>
 
             <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">That moment when a guy in a fedora and pajama pants steals your <a href="https://twitter.com/hashtag/PokemonGo?src=hash">#PokemonGo</a> gym.</p>&mdash; The Domestic Geek (@TheDomesticGeek) <a href="https://twitter.com/TheDomesticGeek/status/757740441332625408">July 26, 2016</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
