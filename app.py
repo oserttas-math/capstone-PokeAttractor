@@ -31,7 +31,9 @@ def show_result():
 
         # Geocode address
         address = '+'.join(app.vars['address'].split())
-        api_key = 'AIzaSyD6fHMPaIkXE8lIS0vMMUctX6n-44TK06I'
+        with open("config.json") as fh:
+            secrets = simplejson.loads(fh.read())
+        api_key = secrets['api_key']
         base_url = 'https://maps.googleapis.com/maps/api/geocode/json?address='
         full_url = base_url + address + '&key='+ api_key
         r = requests.get(full_url, verify=False)
